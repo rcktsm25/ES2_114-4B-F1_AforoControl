@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">AforoControl IoT</string>
+
+    <!-- Zonas monitoreadas para el Spinner de negocio (Sede Puente Alto) -->
+    <string-array name="zonas_monitoreadas">
+        <item>Auditorio</item>
+        <item>Biblioteca</item>
+        <item>Laboratorio IoT</item>
+        <item>Casino Central</item>
+        <item>Acceso Principal</item>
+    </string-array>
+
+    <!-- Client ID para Google Sign-in desde google-services.json -->
+    <string name="default_web_client_id">358747834053-pqf8n329qdpvdds3u31nstdvijvfcmcu.apps.googleusercontent.com</string>
+</resources>

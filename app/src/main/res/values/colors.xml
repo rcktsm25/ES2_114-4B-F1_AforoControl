@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="inacap_red">#D32F2F</color>
+    <color name="inacap_dark">#9A0007</color>
+    <color name="color_primary">#1976D2</color>
+    <color name="color_primary_dark">#0D47A1</color>
+    <color name="color_accent">#00897B</color>
+    <color name="color_danger">#D32F2F</color>
+    <color name="color_warning">#FFA000</color>
+    <color name="color_success">#388E3C</color>
+    <color name="color_gray">#757575</color>
+    <color name="color_light_gray">#F5F5F5</color>
+</resources>

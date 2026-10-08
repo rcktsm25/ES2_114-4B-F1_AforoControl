@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "358747834053",
+    "project_id": "app-lot-viernes",
+    "storage_bucket": "app-lot-viernes.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:358747834053:android:8cbe0b5f57b6fda75b12ac",
+        "android_client_info": {
+          "package_name": "com.example.miaplicacioninacap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "358747834053-b88tc074tlj2nuej3k71tvvut8s7k6dv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.miaplicacioninacap",
+            "certificate_hash": "2628a43781daa7eda728412e6d508bcbdaa3f0cb"
+          }
+        },
+        {
+          "client_id": "358747834053-pqf8n329qdpvdds3u31nstdvijvfcmcu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFjV4nR531XBh9O6bJ36Vjz3F0ja0DR0U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "358747834053-pqf8n329qdpvdds3u31nstdvijvfcmcu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
