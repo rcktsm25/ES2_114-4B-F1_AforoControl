@@ -1,6 +1,7 @@
 package com.example.aplicacionconteodepersonas.views
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
@@ -68,6 +69,15 @@ class MainActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
+        // SharedPreferences: Cargar usuario recordado si existe
+        val prefs = getSharedPreferences("LoginPrefs", Context.MODE_PRIVATE)
+        val recordar = prefs.getBoolean("recordar", false)
+        if (recordar) {
+            val emailGuardado = prefs.getString("email", "") ?: ""
+            binding.edtUsuario.setText(emailGuardado)
+            binding.chkRecordarme.isChecked = true
+        }
+
         // Configuración de Google Sign-In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -117,6 +127,17 @@ class MainActivity : AppCompatActivity() {
                 binding.btnIngresar.isEnabled = true
 
                 if (task.isSuccessful) {
+                    // SharedPreferences: Guardar o limpiar según CheckBox Recordarme
+                    val prefs = getSharedPreferences("LoginPrefs", Context.MODE_PRIVATE)
+                    if (binding.chkRecordarme.isChecked) {
+                        prefs.edit()
+                            .putBoolean("recordar", true)
+                            .putString("email", usuario)
+                            .apply()
+                    } else {
+                        prefs.edit().clear().apply()
+                    }
+
                     // Indicador 6: Mensaje de éxito y pasar a Bienvenida con el email recibido por Intent
                     Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
                     val email = auth.currentUser?.email ?: usuario
@@ -184,6 +205,8 @@ class MainActivity : AppCompatActivity() {
         binding.edtUsuario.error = null
         binding.edtPassword.error = null
         binding.chkRecordarme.isChecked = false
+        val prefs = getSharedPreferences("LoginPrefs", Context.MODE_PRIVATE)
+        prefs.edit().clear().apply()
     }
 
     fun onMostrarPasswordClick(view: View) {

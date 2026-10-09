@@ -43,6 +43,12 @@ class PreferenciasActivity : AppCompatActivity() {
         if (zonaIndex < binding.spZonaMonitoreada.count) {
             binding.spZonaMonitoreada.setSelection(zonaIndex)
         }
+        val umbral = prefs.getString("umbral", "80%")
+        if (umbral == "100%") {
+            binding.rbAlerta100.isChecked = true
+        } else {
+            binding.rbAlerta80.isChecked = true
+        }
     }
 
     fun onGuardarPreferenciaClick(view: View) {
