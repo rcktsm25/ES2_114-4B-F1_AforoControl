@@ -1,0 +1,12 @@
+EVALUACIÓN SUMATIVA N°2: APLICACIONES MÓVILES PARA IOT
+SECCIÓN: 114-4B-F1
+SEDE: PUENTE ALTO
+DOCENTE: MICHAEL ARJEL
+
+INTEGRANTES:
+- Samuel Morales
+- Camilo Candia
+
+PROYECTO:
+- AforoControl IoT (Sistema de Monitoreo y Control de Aforo de Personas en Tiempo Real)
+- Colección Firestore: aforos
