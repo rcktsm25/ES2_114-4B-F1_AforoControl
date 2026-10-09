@@ -123,7 +123,7 @@ class ListaActivity : AppCompatActivity() {
 
         val alertDialog = AlertDialog.Builder(this)
             .setView(dialogBinding.root)
-            .setPositiveButton(if (esEdicion) "Actualizar" else "Guardar", null) // listener nulo temporal para validación manual
+            .setPositiveButton(if (esEdicion) "Actualizar" else "Aceptar", null) // listener nulo temporal para validación manual
             .setNegativeButton("Cancelar") { dialog, _ ->
                 dialog.dismiss()
             }
@@ -146,6 +146,9 @@ class ListaActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            // Datos válidos: cerramos la ventana de inmediato para volver a la lista
+            alertDialog.dismiss()
+
             val cantidad = cantidadStr.toIntOrNull() ?: 0
             val fechaActual = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(Date())
             val uid = FirebaseAuth.getInstance().currentUser?.uid ?: ""
@@ -166,7 +169,6 @@ class ListaActivity : AppCompatActivity() {
                     .set(aforoActualizado)
                     .addOnSuccessListener {
                         Toast.makeText(this, "Registro actualizado exitosamente", Toast.LENGTH_SHORT).show()
-                        alertDialog.dismiss()
                     }
                     .addOnFailureListener { e ->
                         Toast.makeText(this, "Error al actualizar: ${e.message}", Toast.LENGTH_SHORT).show()
@@ -186,7 +188,6 @@ class ListaActivity : AppCompatActivity() {
                 docRef.set(nuevoAforo)
                     .addOnSuccessListener {
                         Toast.makeText(this, "Registro de aforo guardado", Toast.LENGTH_SHORT).show()
-                        alertDialog.dismiss()
                     }
                     .addOnFailureListener { e ->
                         Toast.makeText(this, "Error al guardar: ${e.message}", Toast.LENGTH_SHORT).show()
