@@ -10,7 +10,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.miaplicacioninacap"
+        applicationId = "com.example.aplicacionconteodepersonas"
         minSdk = 24
         targetSdk = 37
         versionCode = 1

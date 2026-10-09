@@ -7,6 +7,35 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:358747834053:android:87115adae429d2f45b12ac",
+        "android_client_info": {
+          "package_name": "com.example.aplicacionconteodepersonas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "358747834053-pqf8n329qdpvdds3u31nstdvijvfcmcu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFjV4nR531XBh9O6bJ36Vjz3F0ja0DR0U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "358747834053-pqf8n329qdpvdds3u31nstdvijvfcmcu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:358747834053:android:8cbe0b5f57b6fda75b12ac",
         "android_client_info": {
           "package_name": "com.example.miaplicacioninacap"
