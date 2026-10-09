@@ -92,8 +92,18 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
+        if (usuario.length > 60) {
+            binding.edtUsuario.error = "El correo no puede tener más de 60 caracteres"
+            return
+        }
+
         if (password.length < 6) {
             binding.edtPassword.error = "La contraseña debe tener al menos 6 caracteres"
+            return
+        }
+
+        if (password.length > 30) {
+            binding.edtPassword.error = "La contraseña no puede tener más de 30 caracteres"
             return
         }
 

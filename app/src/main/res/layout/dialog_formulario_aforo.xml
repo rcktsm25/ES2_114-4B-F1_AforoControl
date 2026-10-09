@@ -33,7 +33,8 @@
             android:id="@+id/edtDialogZona"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textCapWords" />
+            android:inputType="textCapWords"
+            android:maxLength="40" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -48,7 +49,8 @@
             android:id="@+id/edtDialogCantidad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:inputType="number"
+            android:maxLength="5" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -63,7 +65,8 @@
             android:id="@+id/edtDialogNivel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textCapWords" />
+            android:inputType="textCapWords"
+            android:maxLength="30" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

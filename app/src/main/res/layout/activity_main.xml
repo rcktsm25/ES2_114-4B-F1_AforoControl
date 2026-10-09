@@ -55,6 +55,7 @@
             android:layout_marginTop="28dp"
             android:hint="Correo electrónico (ej: usuario@correo.cl)"
             android:inputType="textEmailAddress"
+            android:maxLength="60"
             app:layout_constraintTop_toBottomOf="@id/txtSubtitulo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -66,6 +67,7 @@
             android:layout_marginTop="12dp"
             android:hint="Contraseña"
             android:inputType="textPassword"
+            android:maxLength="30"
             app:layout_constraintTop_toBottomOf="@id/edtUsuario"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
