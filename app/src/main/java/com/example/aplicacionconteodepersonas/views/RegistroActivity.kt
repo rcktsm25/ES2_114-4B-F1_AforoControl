@@ -12,6 +12,8 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.aplicacionconteodepersonas.databinding.ActivityRegistroBinding
 import com.example.aplicacionconteodepersonas.models.Usuario
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -96,6 +98,9 @@ class RegistroActivity : AppCompatActivity() {
         // Registro en Firebase Authentication
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
+                binding.pbRegistro.visibility = View.GONE
+                binding.btnRegistrar.isEnabled = true
+
                 if (task.isSuccessful) {
                     val uid = auth.currentUser?.uid ?: ""
                     val fechaActual = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(Date())
@@ -107,32 +112,30 @@ class RegistroActivity : AppCompatActivity() {
                         fechaRegistro = fechaActual
                     )
 
-                    // Guardado en la colección "usuarios" de Firestore (Indicador 3)
+                    // Guardado en Firestore: se envía en segundo plano sin bloquear la UI
                     FirebaseFirestore.getInstance()
                         .collection("usuarios")
                         .document(uid)
                         .set(nuevoUsuario)
-                        .addOnSuccessListener {
-                            binding.pbRegistro.visibility = View.GONE
-                            binding.btnRegistrar.isEnabled = true
-                            Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
 
-                            // Navega a Bienvenida pasando el email por Intent
-                            val intent = Intent(this, BienvenidaActivity::class.java)
-                            intent.putExtra("usuario", email)
-                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                            startActivity(intent)
-                            finish()
-                        }
-                        .addOnFailureListener { e ->
-                            binding.pbRegistro.visibility = View.GONE
-                            binding.btnRegistrar.isEnabled = true
-                            Toast.makeText(this, "Usuario creado pero error al guardar perfil: ${e.message}", Toast.LENGTH_LONG).show()
-                        }
+                    Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
+
+                    // Navega a Bienvenida de inmediato
+                    val intent = Intent(this, BienvenidaActivity::class.java)
+                    intent.putExtra("usuario", email)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                    finish()
                 } else {
-                    binding.pbRegistro.visibility = View.GONE
-                    binding.btnRegistrar.isEnabled = true
-                    Toast.makeText(this, "Error al registrar: ${task.exception?.localizedMessage}", Toast.LENGTH_LONG).show()
+                    val mensaje = when (task.exception) {
+                        is FirebaseAuthUserCollisionException ->
+                            "Este correo ya está registrado. Inicia sesión en Login o usa otro correo."
+                        is FirebaseAuthWeakPasswordException ->
+                            "La contraseña es muy corta o débil (mínimo 6 caracteres)."
+                        else ->
+                            task.exception?.localizedMessage ?: "Error al registrar en Firebase"
+                    }
+                    Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show()
                 }
             }
     }
